@@ -1,0 +1,25 @@
+{
+  "name": "js13",
+  "version": "1.0.0",
+  "main": "index.js",
+  "author": "<koen.van.geert@gmail.com>",
+  "license": "MIT",
+  "scripts": {
+    "start": "webpack-dev-server --mode=development --host 0.0.0.0",
+    "build": "webpack --mode=production --env=prod"
+  },
+  "devDependencies": {
+    "extra-watch-webpack-plugin": "^1.0.3",
+    "html-webpack-inline-svg-plugin": "^2.3.0",
+    "html-webpack-plugin": "^4.3.0",
+    "script-ext-html-webpack-plugin": "^2.1.4",
+    "terser-webpack-plugin": "^4.1.0",
+    "ts-loader": "^8.0.2",
+    "typescript": "^4.0.2",
+    "webpack": "^4.44.1",
+    "webpack-cli": "^3.3.12",
+    "webpack-conditional-loader": "^1.0.12",
+    "webpack-dev-server": "^3.11.0",
+    "zip-webpack-plugin": "^3.0.0"
+  }
+}
