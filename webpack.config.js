@@ -38,7 +38,7 @@ module.exports = (env) => {
     }),
 
     new ExtraWatchWebpackPlugin({
-      files: ["levels/*.svg", "assets/*.svg"],
+      files: ["assets/**/*.png", "assets/**/*.json"],
     }),
   ];
 
@@ -52,6 +52,9 @@ module.exports = (env) => {
   }
 
   return {
+    devServer: {
+      contentBase: path.join(__dirname, "src/"),
+    },
     entry: "./src/index.ts",
     module: {
       rules: [
@@ -59,6 +62,10 @@ module.exports = (env) => {
           test: /\.ts?$/,
           use: ["ts-loader", "webpack-conditional-loader"],
           exclude: /node_modules/,
+        },
+        {
+          test: /\.(png|svg|jpg|gif)$/,
+          use: ["file-loader"],
         },
       ],
     },

@@ -10,6 +10,7 @@
   },
   "devDependencies": {
     "extra-watch-webpack-plugin": "^1.0.3",
+    "file-loader": "^6.0.0",
     "html-webpack-inline-svg-plugin": "^2.3.0",
     "html-webpack-plugin": "^4.3.0",
     "script-ext-html-webpack-plugin": "^2.1.4",
@@ -21,5 +22,8 @@
     "webpack-conditional-loader": "^1.0.12",
     "webpack-dev-server": "^3.11.0",
     "zip-webpack-plugin": "^3.0.0"
+  },
+  "dependencies": {
+    "kontra": "^7.1.1"
   }
 }

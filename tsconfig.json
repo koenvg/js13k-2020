@@ -3,11 +3,14 @@
     "outDir": "./dist/",
     "noImplicitAny": true,
     "skipLibCheck": true,
+    "moduleResolution": "Node",
     "module": "es6",
     "target": "es5",
     "jsx": "react",
     "allowJs": true,
-    "baseUrl": "./src"
+    "baseUrl": "./src",
+    "resolveJsonModule": true,
+    "allowSyntheticDefaultImports": true
   },
   "include": ["src"],
   "exclude": ["node_modules"]
