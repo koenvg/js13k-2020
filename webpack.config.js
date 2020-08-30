@@ -6,6 +6,7 @@ const ScriptExtHtmlWebpackPlugin = require("script-ext-html-webpack-plugin");
 const ExtraWatchWebpackPlugin = require("extra-watch-webpack-plugin");
 const ZipPlugin = require("zip-webpack-plugin");
 const TerserPlugin = require("terser-webpack-plugin");
+const TsconfigPathsPlugin = require("tsconfig-paths-webpack-plugin");
 
 module.exports = (env) => {
   const isProd = env === "prod";
@@ -52,9 +53,6 @@ module.exports = (env) => {
   }
 
   return {
-    devServer: {
-      contentBase: path.join(__dirname, "src/"),
-    },
     entry: "./src/index.ts",
     module: {
       rules: [
@@ -71,6 +69,7 @@ module.exports = (env) => {
     },
     resolve: {
       extensions: [".ts", ".js"],
+      plugins: [new TsconfigPathsPlugin()],
     },
     output: {
       filename: "bundle.js",

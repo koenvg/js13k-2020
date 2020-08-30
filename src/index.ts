@@ -1,15 +1,17 @@
-import { init, Sprite, GameLoop, load, TileEngine, dataAssets } from 'kontra';
+import { init, Sprite, GameLoop, load, TileEngine, initKeys, bindKeys } from 'kontra';
 import level from './assets/data/level.json';
 // @ts-ignore
 import img from './assets/img/Overworld.png';
+import { Alien } from 'sprites/alien';
+initKeys();
 
-
+const stepSize = 7;
 let { canvas } = init();
 
-
 async function start() {
-  const assets = await load(img)
+  await load(img)
   const tileEngine = TileEngine({
+
     ...level,
     tilesets: [
       {
@@ -20,31 +22,22 @@ async function start() {
   });
 
 
-  const sprite = Sprite({
-    x: 100,        // starting x,y position of the sprite
-    y: 80,
-    color: 'red',  // fill color of the sprite rectangle
-    width: 20,     // width and height of the sprite rectangle
-    height: 40,
-    dx: 2          // move the sprite 2px to the right every frame
+  const alien = new Alien({
+    tileEngine: tileEngine,
   });
 
-  const loop = GameLoop({  // create the main game loop
+  const loop = GameLoop({
+    fps: 60,
     update: function () { // update the game state
-      sprite.update();
+      alien.update();
 
-      // wrap the sprites position when it reaches
-      // the edge of the screen
-      if (sprite.x > canvas.width) {
-        sprite.x = -sprite.width;
-      }
     },
     render: function () { // render the game state
       tileEngine.render();
-      sprite.render();
+
+      alien.render();
     }
   });
-
   loop.start();
 }
 

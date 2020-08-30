@@ -1,5 +1,3 @@
-import { Sprite } from 'kontra';
+import { Sprite } from 'kontra'
 
-interface Cow extends Sprite {
-
-}
+interface Cow extends Sprite {}
