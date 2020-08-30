@@ -1,11 +1,4 @@
-import {
-  Sprite,
-  keyPressed,
-  TileEngine,
-  SpriteConstructor,
-  getWorldRect,
-} from 'kontra'
-import * as Config from '../Config'
+import { Sprite, keyPressed, TileEngine, SpriteConstructor } from 'kontra'
 
 const stepSize = 4
 type SpriteProps = ConstructorParameters<SpriteConstructor>[0]
@@ -14,8 +7,8 @@ interface AlienProps extends SpriteProps {
   tileEngine: TileEngine
 }
 export class Alien extends Sprite {
-  x = Config.canvasWidthTakingScalingIntoAccount / 2
-  y = Config.canvasHeightTakingScalingIntoAccount / 2
+  x = this.context.canvas.width / 2
+  y = this.context.canvas.height / 2
   width = 16
   height = 16
   color = 'red'
@@ -28,10 +21,7 @@ export class Alien extends Sprite {
 
   update = () => {
     if (keyPressed('up')) {
-      if (
-        this.tileEngine.sy === 0 ||
-        this.y > Config.canvasHeightTakingScalingIntoAccount / 2
-      ) {
+      if (this.tileEngine.sy === 0 || this.y > this.context.canvas.height / 2) {
         this.y = this.y > stepSize ? this.y - stepSize : 0
       } else {
         this.tileEngine.sy = this.tileEngine.sy - stepSize
@@ -39,25 +29,20 @@ export class Alien extends Sprite {
     } else if (keyPressed('down')) {
       if (
         this.tileEngine.sy ===
-          this.tileEngine.mapheight -
-            Config.canvasHeightTakingScalingIntoAccount ||
-        this.y < Config.canvasHeightTakingScalingIntoAccount / 2
+          this.tileEngine.mapheight - this.context.canvas.height ||
+        this.y < this.context.canvas.height / 2
       ) {
         this.y =
-          this.y <
-          Config.canvasHeightTakingScalingIntoAccount - stepSize - this.height
+          this.y < this.context.canvas.height - stepSize - this.height
             ? this.y + stepSize
-            : Config.canvasHeightTakingScalingIntoAccount - this.height
+            : this.context.canvas.height - this.height
       } else {
         this.tileEngine.sy = this.tileEngine.sy + stepSize
       }
     }
 
     if (keyPressed('left')) {
-      if (
-        this.tileEngine.sx === 0 ||
-        this.x > Config.canvasWidthTakingScalingIntoAccount / 2
-      ) {
+      if (this.tileEngine.sx === 0 || this.x > this.context.canvas.width / 2) {
         this.x = this.x > stepSize ? this.x - stepSize : 0
       } else {
         this.tileEngine.sx = this.tileEngine.sx - stepSize
@@ -65,15 +50,13 @@ export class Alien extends Sprite {
     } else if (keyPressed('right')) {
       if (
         this.tileEngine.sx ===
-          this.tileEngine.mapwidth -
-            Config.canvasWidthTakingScalingIntoAccount ||
-        this.x < Config.canvasWidthTakingScalingIntoAccount / 2
+          this.tileEngine.mapwidth - this.context.canvas.width ||
+        this.x < this.context.canvas.width / 2
       ) {
         this.x =
-          this.x <
-          Config.canvasWidthTakingScalingIntoAccount - stepSize - this.width
+          this.x < this.context.canvas.width - stepSize - this.width
             ? this.x + stepSize
-            : Config.canvasWidthTakingScalingIntoAccount - this.width
+            : this.context.canvas.width - this.width
       } else {
         this.tileEngine.sx = this.tileEngine.sx + stepSize
       }
