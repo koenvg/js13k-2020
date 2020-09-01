@@ -75,8 +75,8 @@ class Alien extends Sprite {
 const createAnimations = (image: HTMLImageElement) => {
   const spriteSheet = SpriteSheet({
     image: image,
-    frameWidth: 64,
-    frameHeight: 64,
+    frameWidth: 256,
+    frameHeight: 256,
     animations: {
       // create a named animation: walk
       walk: {
