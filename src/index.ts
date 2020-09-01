@@ -26,7 +26,6 @@ async function start() {
   })
 
   const loop = GameLoop({
-    fps: 60,
     update: function () {
       // update the game state
       alien.update()
