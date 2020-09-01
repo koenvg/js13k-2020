@@ -1,4 +1,6 @@
-import { Sprite, keyPressed, TileEngine, SpriteConstructor } from 'kontra'
+import { Sprite, keyPressed, TileEngine, SpriteConstructor, load } from 'kontra'
+// @ts-ignore
+import alienImage from './alien.png'
 
 const stepSize = 4
 type SpriteProps = ConstructorParameters<SpriteConstructor>[0]
@@ -6,12 +8,11 @@ type SpriteProps = ConstructorParameters<SpriteConstructor>[0]
 interface AlienProps extends SpriteProps {
   tileEngine: TileEngine
 }
-export class Alien extends Sprite {
+class Alien extends Sprite {
   x = this.context.canvas.width / 2
   y = this.context.canvas.height / 2
   width = 16
   height = 16
-  color = 'red'
   tileEngine: TileEngine
 
   constructor(props: AlienProps) {
@@ -62,4 +63,12 @@ export class Alien extends Sprite {
       }
     }
   }
+}
+
+export const createAlien = async (props: AlienProps) => {
+  const image = new Image(16, 16)
+  image.src = alienImage
+  await new Promise((resolve) => (image.onload = resolve))
+
+  return new Alien({ ...props, image })
 }

@@ -2,7 +2,7 @@ import { init, Sprite, GameLoop, load, TileEngine, initKeys } from 'kontra'
 import level from './assets/data/level.json'
 // @ts-ignore
 import img from './assets/img/Overworld.png'
-import { Alien } from 'sprites/alien'
+import { createAlien } from 'sprites/alien'
 import { configureContext } from 'Config'
 initKeys()
 
@@ -20,9 +20,8 @@ async function start() {
       },
     ],
   })
-  // tileEngine.context.scale(2, 2)
 
-  const alien = new Alien({
+  const alien = await createAlien({
     tileEngine: tileEngine,
   })
 
@@ -32,7 +31,7 @@ async function start() {
       // update the game state
       alien.update()
     },
-    render: function () {
+    render: async function () {
       // render the game state
 
       tileEngine.render()
