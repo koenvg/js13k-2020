@@ -16,10 +16,11 @@ interface AlienProps extends SpriteProps {
   tileEngine: TileEngine
 }
 class Alien extends Sprite {
-  x = this.context.canvas.width / 2
-  y = this.context.canvas.height / 2
+  x = this.width / 2
+  y = this.height / 2
   width = 16
   height = 16
+  anchor = { x: 0.5, y: 0.5 }
   tileEngine: TileEngine
 
   constructor(props: AlienProps) {
@@ -28,30 +29,43 @@ class Alien extends Sprite {
   }
 
   update = () => {
-    if (keyPressed('up')) {
-      if (this.tileEngine.sy === 0 || this.y > this.context.canvas.height / 2) {
-        this.y = this.y > stepSize ? this.y - stepSize : 0
-      } else {
-        this.tileEngine.sy = this.tileEngine.sy - stepSize
-      }
-    } else if (keyPressed('down')) {
-      if (
-        this.tileEngine.sy ===
-          this.tileEngine.mapheight - this.context.canvas.height ||
-        this.y < this.context.canvas.height / 2
-      ) {
-        this.y =
-          this.y < this.context.canvas.height - stepSize - this.height
-            ? this.y + stepSize
-            : this.context.canvas.height - this.height
-      } else {
-        this.tileEngine.sy = this.tileEngine.sy + stepSize
-      }
-    }
+    this.moveVertical()
+    this.moveHorizontal()
+  }
 
+  private collisionDetection = (move: () => void) => () => {
+    const objectPosition = { x: this.x, y: this.y }
+    const tileEngineOffset = { sx: this.tileEngine.sx, sy: this.tileEngine.sy }
+
+    move()
+    console.log(
+      this.tileEngine.tileAtLayer('collision', {
+        x: this.x + this.tileEngine.sx,
+        y: this.y + this.tileEngine.sy,
+      })
+    )
+    if (
+      this.tileEngine.layerCollidesWith('collision', {
+        x: this.x + this.tileEngine.sx - this.width / 2,
+        y: this.y + this.tileEngine.sy - this.height / 2,
+        width: this.width - 3,
+        height: this.height - 3,
+      })
+    ) {
+      this.x = objectPosition.x
+      this.y = objectPosition.y
+      this.tileEngine.sx = tileEngineOffset.sx
+      this.tileEngine.sy = tileEngineOffset.sy
+    }
+  }
+
+  private moveHorizontal = this.collisionDetection(() => {
     if (keyPressed('left')) {
       if (this.tileEngine.sx === 0 || this.x > this.context.canvas.width / 2) {
-        this.x = this.x > stepSize ? this.x - stepSize : 0
+        this.x =
+          this.x - this.width / 2 > stepSize
+            ? this.x - stepSize
+            : this.width / 2
       } else {
         this.tileEngine.sx = this.tileEngine.sx - stepSize
       }
@@ -69,7 +83,33 @@ class Alien extends Sprite {
         this.tileEngine.sx = this.tileEngine.sx + stepSize
       }
     }
-  }
+  })
+
+  private moveVertical = this.collisionDetection(() => {
+    if (keyPressed('up')) {
+      if (this.tileEngine.sy === 0 || this.y > this.context.canvas.height / 2) {
+        this.y =
+          this.y - this.height / 2 > stepSize
+            ? this.y - stepSize
+            : this.height / 2
+      } else {
+        this.tileEngine.sy = this.tileEngine.sy - stepSize
+      }
+    } else if (keyPressed('down')) {
+      if (
+        this.tileEngine.sy ===
+          this.tileEngine.mapheight - this.context.canvas.height ||
+        this.y < this.context.canvas.height / 2
+      ) {
+        this.y =
+          this.y < this.context.canvas.height - stepSize - this.height
+            ? this.y + stepSize
+            : this.context.canvas.height - this.height
+      } else {
+        this.tileEngine.sy = this.tileEngine.sy + stepSize
+      }
+    }
+  })
 }
 
 const createAnimations = (image: HTMLImageElement) => {

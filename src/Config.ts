@@ -1,4 +1,5 @@
 const dimension = 320
+const margin = 40
 
 export const configureContext = (context: CanvasRenderingContext2D) => {
   const body = document.body
@@ -11,7 +12,7 @@ export const configureContext = (context: CanvasRenderingContext2D) => {
     html.scrollHeight,
     html.offsetHeight
   )
-  context.canvas.height = height / 2
-  context.canvas.style.marginTop = `${height / 4}px`
+  context.canvas.height = height / 2 - margin
+  context.canvas.style.marginTop = `${height / 4 + margin / 2}px`
   context.canvas.width = dimension
 }
