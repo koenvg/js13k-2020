@@ -16,10 +16,10 @@ interface AlienProps extends SpriteProps {
   tileEngine: TileEngine
 }
 class Alien extends Sprite {
-  x = this.width / 2
-  y = this.height / 2
   width = 16
   height = 16
+  x = this.width / 2
+  y = this.height / 2
   anchor = { x: 0.5, y: 0.5 }
   tileEngine: TileEngine
 
@@ -76,9 +76,9 @@ class Alien extends Sprite {
         this.x < this.context.canvas.width / 2
       ) {
         this.x =
-          this.x < this.context.canvas.width - stepSize - this.width
+          this.x < this.context.canvas.width - stepSize - this.width / 2
             ? this.x + stepSize
-            : this.context.canvas.width - this.width
+            : this.context.canvas.width - this.width / 2
       } else {
         this.tileEngine.sx = this.tileEngine.sx + stepSize
       }
@@ -102,9 +102,9 @@ class Alien extends Sprite {
         this.y < this.context.canvas.height / 2
       ) {
         this.y =
-          this.y < this.context.canvas.height - stepSize - this.height
+          this.y < this.context.canvas.height - stepSize - this.height / 2
             ? this.y + stepSize
-            : this.context.canvas.height - this.height
+            : this.context.canvas.height - this.height / 2
       } else {
         this.tileEngine.sy = this.tileEngine.sy + stepSize
       }

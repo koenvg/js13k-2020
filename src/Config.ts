@@ -1,4 +1,4 @@
-const dimension = 320
+const dimension = 480
 const margin = 40
 
 export const configureContext = (context: CanvasRenderingContext2D) => {
