@@ -38,12 +38,7 @@ class Alien extends Sprite {
     const tileEngineOffset = { sx: this.tileEngine.sx, sy: this.tileEngine.sy }
 
     move()
-    console.log(
-      this.tileEngine.tileAtLayer('collision', {
-        x: this.x + this.tileEngine.sx,
-        y: this.y + this.tileEngine.sy,
-      })
-    )
+
     if (
       this.tileEngine.layerCollidesWith('collision', {
         x: this.x + this.tileEngine.sx - this.width / 2,
