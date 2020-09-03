@@ -16,8 +16,8 @@ interface AlienProps extends SpriteProps {
   tileEngine: TileEngine
 }
 class Alien extends Sprite {
-  width = 13
-  height = 13
+  width = 26
+  height = 26
   x = this.width / 2
   y = this.height / 2
   anchor = { x: 0.5, y: 0.5 }
