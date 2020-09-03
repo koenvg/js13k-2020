@@ -16,8 +16,8 @@ interface AlienProps extends SpriteProps {
   tileEngine: TileEngine
 }
 class Alien extends Sprite {
-  width = 16
-  height = 16
+  width = 13
+  height = 13
   x = this.width / 2
   y = this.height / 2
   anchor = { x: 0.5, y: 0.5 }
@@ -39,14 +39,14 @@ class Alien extends Sprite {
 
     move()
 
-    if (
-      this.tileEngine.layerCollidesWith('collision', {
-        x: this.x + this.tileEngine.sx - this.width / 2,
-        y: this.y + this.tileEngine.sy - this.height / 2,
-        width: this.width - 3,
-        height: this.height - 3,
-      })
-    ) {
+    const boundingBox = {
+      x: this.x + this.tileEngine.sx - this.width / 2,
+      y: this.y + this.tileEngine.sy - this.height / 2,
+      width: this.width,
+      height: this.height,
+    }
+
+    if (this.tileEngine.layerCollidesWith('collision', boundingBox)) {
       this.x = objectPosition.x
       this.y = objectPosition.y
       this.tileEngine.sx = tileEngineOffset.sx
