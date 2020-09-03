@@ -35,22 +35,47 @@ class Alien extends Sprite {
 
   private collisionDetection = (move: () => void) => () => {
     const objectPosition = { x: this.x, y: this.y }
-    const tileEngineOffset = { sx: this.tileEngine.sx, sy: this.tileEngine.sy }
-
-    move()
-
-    const boundingBox = {
-      x: this.x + this.tileEngine.sx - this.width / 2,
-      y: this.y + this.tileEngine.sy - this.height / 2,
-      width: this.width,
-      height: this.height,
+    const tileEngineOffset = {
+      sx: this.tileEngine.sx,
+      sy: this.tileEngine.sy,
     }
-
-    if (this.tileEngine.layerCollidesWith('collision', boundingBox)) {
+    const reset = () => {
       this.x = objectPosition.x
       this.y = objectPosition.y
       this.tileEngine.sx = tileEngineOffset.sx
       this.tileEngine.sy = tileEngineOffset.sy
+    }
+
+    const boundingBoxBefore = {
+      x: this.x + this.tileEngine.sx,
+      y: this.y + this.tileEngine.sy,
+      width: this.width + 2,
+      height: this.height + 2,
+      anchor: this.anchor,
+    }
+
+    move()
+
+    const boundingBox = {
+      x: this.x + this.tileEngine.sx,
+      y: this.y + this.tileEngine.sy,
+      width: this.width + 2,
+      height: this.height + 2,
+      anchor: this.anchor,
+    }
+
+    if (this.tileEngine.layerCollidesWith('collision', boundingBox)) {
+      reset()
+    }
+
+    // if a player would hop over a level
+    if (
+      (this.tileEngine.layerCollidesWith('Level 0', boundingBoxBefore) &&
+        this.tileEngine.layerCollidesWith('Level 1', boundingBox)) ||
+      (this.tileEngine.layerCollidesWith('Level 1', boundingBoxBefore) &&
+        this.tileEngine.layerCollidesWith('Level 0', boundingBox))
+    ) {
+      reset()
     }
   }
 
