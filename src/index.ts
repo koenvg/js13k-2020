@@ -4,7 +4,6 @@ import img from './assets/img/Overworld.png'
 import { createAlien } from 'sprites/alien/alien'
 import { configureContext } from 'Config'
 import { loadLevelOne } from 'levels/levelOne'
-import { createCow } from 'sprites/cow/cow'
 initKeys()
 
 let { context } = init()
@@ -16,11 +15,6 @@ async function start() {
 
   const alien = await createAlien({
     tileEngine: level.tileEngine,
-  })
-
-  const cow = await createCow({
-    x: 48,
-    y: 48,
   })
 
   const loop = GameLoop({

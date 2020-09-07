@@ -14,10 +14,9 @@ const createAnimations = (image: HTMLImageElement) => {
     frameWidth: 48,
     frameHeight: 48,
     animations: {
-      // create a named animation: walk
-      walk: {
-        frames: '0', // frames 0 through 9
-        frameRate: 7,
+      idle: {
+        frames: [0, 1, 2, 3],
+        frameRate: 1,
       },
     },
   })
