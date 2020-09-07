@@ -5,16 +5,18 @@ import {
   SpriteConstructor,
   load,
   SpriteSheet,
+  loadImage,
 } from 'kontra'
 // @ts-ignore
-import alienImage from './alien.png'
+import alienSrc from './alien.png'
+import { SpriteProps } from 'sprites/types'
 
 const stepSize = 16 / 6
-type SpriteProps = ConstructorParameters<SpriteConstructor>[0]
 
 interface AlienProps extends SpriteProps {
   tileEngine: TileEngine
 }
+
 class Alien extends Sprite {
   width = 26
   height = 26
@@ -141,7 +143,7 @@ const createAnimations = (image: HTMLImageElement) => {
       // create a named animation: walk
       walk: {
         frames: '0..7', // frames 0 through 9
-        frameRate: 30,
+        frameRate: 7,
       },
     },
   })
@@ -149,9 +151,7 @@ const createAnimations = (image: HTMLImageElement) => {
 }
 
 export const createAlien = async (props: AlienProps) => {
-  const image = new Image()
-  image.src = alienImage
-  await new Promise((resolve) => (image.onload = resolve))
+  const image = await loadImage(alienSrc)
 
   return new Alien({ ...props, animations: createAnimations(image) })
 }
