@@ -3,7 +3,7 @@ import { SpriteProps } from 'sprites/types'
 // @ts-ignore
 import cowSrc from './Cow.png'
 
-class Cow extends Sprite {
+export class Cow extends Sprite {
   width = 48
   height = 48
 }
