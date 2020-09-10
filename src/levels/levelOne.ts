@@ -1,9 +1,13 @@
-import { TileEngine } from 'kontra'
+import { TileEngine, loadImage } from 'kontra'
 import level from '../assets/data/level.json'
 import { createCow } from 'sprites/cow/cow'
 import { Level } from './level'
+// @ts-ignore
+import img from '../assets/img/Overworld.png'
+import { createAlien } from 'sprites/alien/alien'
 
-export const loadLevelOne = async (img: string): Promise<Level> => {
+export const loadLevelOne = async (): Promise<Level> => {
+  await loadImage(img)
   const tileEngine = TileEngine({
     ...level,
     tilesets: [
@@ -13,19 +17,33 @@ export const loadLevelOne = async (img: string): Promise<Level> => {
       },
     ],
   })
+  const cows = await Promise.all([
+    createCow({
+      x: 150,
+      y: 0,
+    }),
+    createCow({
+      x: 20,
+      y: 150,
+    }),
+  ])
 
-  const cow = await createCow({
-    x: 150,
-    y: 0,
+  cows.forEach((cow) => tileEngine.addObject(cow))
+
+  const alien = await createAlien({
+    tileEngine: tileEngine,
   })
-
-  tileEngine.addObject(cow)
 
   return {
     tileEngine,
     render: () => {
       tileEngine.render()
-      cow.render()
+      cows.forEach((cow) => cow.render())
+      alien.render()
+    },
+    update: () => {
+      cows.forEach((cow) => cow.update())
+      alien.update()
     },
   }
 }
