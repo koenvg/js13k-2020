@@ -22,7 +22,6 @@ class LevelOne implements Level {
   }
   update(): void {
     if (this.cowBeingSuckedUp) {
-      console.log('LKAJLKDJSL ')
       return
     }
     this.cows.forEach((cow) => cow.update())
