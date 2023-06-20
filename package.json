@@ -23,7 +23,7 @@
     "webpack-cli": "^3.3.12",
     "webpack-conditional-loader": "^1.0.12",
     "webpack-dev-server": "^3.11.0",
-    "zip-webpack-plugin": "^3.0.0"
+    "zip-webpack-plugin": "^4.0.0"
   },
   "dependencies": {
     "kontra": "^7.1.1"
