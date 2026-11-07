@@ -2568,9 +2568,9 @@ kind-of@^6.0.0, kind-of@^6.0.2:
   integrity sha512-dcS1ul+9tmeD95T+x28/ehLgd9mENa3LsvDTtzm3vyBEO7RPptvAD+t44WVXaUjTBRcrpFeFlC8WCruUR456hw==
 
 kontra@^7.1.1:
-  version "7.1.1"
-  resolved "https://registry.yarnpkg.com/kontra/-/kontra-7.1.1.tgz#781b1287ced98936cd7185d89fe02842374d4823"
-  integrity sha512-klh4Hwzki5Ar6h5oTxGvJXHrxG7vs6shpP9QtZohkPePyV0gZ0/duCoccJSdT/Jbb/xJ+nmDsmvxuA9u0RM20g==
+  version "7.3.1"
+  resolved "https://registry.yarnpkg.com/kontra/-/kontra-7.3.1.tgz#fa32d751041a0afcb21472006322808177ece77f"
+  integrity sha512-Qv8VzxI9GIpQi7u+2GtAggpstSvByB0lqfuksoOiGMdjBRM6do+I4v5OJhWX/q2d9PIW9PGgdk7j+vN53SpqIQ==
 
 loader-runner@^2.4.0:
   version "2.4.0"
