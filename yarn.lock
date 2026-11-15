@@ -2567,10 +2567,10 @@ kind-of@^6.0.0, kind-of@^6.0.2:
   resolved "https://registry.yarnpkg.com/kind-of/-/kind-of-6.0.3.tgz#07c05034a6c349fa06e24fa35aa76db4580ce4dd"
   integrity sha512-dcS1ul+9tmeD95T+x28/ehLgd9mENa3LsvDTtzm3vyBEO7RPptvAD+t44WVXaUjTBRcrpFeFlC8WCruUR456hw==
 
-kontra@^7.1.1:
-  version "7.1.1"
-  resolved "https://registry.yarnpkg.com/kontra/-/kontra-7.1.1.tgz#781b1287ced98936cd7185d89fe02842374d4823"
-  integrity sha512-klh4Hwzki5Ar6h5oTxGvJXHrxG7vs6shpP9QtZohkPePyV0gZ0/duCoccJSdT/Jbb/xJ+nmDsmvxuA9u0RM20g==
+kontra@^10.0.0:
+  version "10.0.2"
+  resolved "https://registry.yarnpkg.com/kontra/-/kontra-10.0.2.tgz#699dda8c976a7e58dbd517de45ad40081d620788"
+  integrity sha512-NJfxmWtwDi1rWjj/fhOVwW4txjEVsDNgNNHNzc87YnsN7qZlZlkLQ0mWt7SN6WEAMH2KmX4evgL3Cmc2zVOXvQ==
 
 loader-runner@^2.4.0:
   version "2.4.0"

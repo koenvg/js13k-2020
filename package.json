@@ -26,6 +26,6 @@
     "zip-webpack-plugin": "^3.0.0"
   },
   "dependencies": {
-    "kontra": "^7.1.1"
+    "kontra": "^10.0.0"
   }
 }
